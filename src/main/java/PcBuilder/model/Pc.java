@@ -2,26 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package PcBuilder.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-//JPA entity class used to create tables
+//JPA entity class used to map application data to sql data
 
 @Entity
 @Table(name = "pcs")
-public class Pc {
+public class Pc implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "total_power", nullable = false)
-    private int totalPower = 0;
+    private Integer totalPower = 0;
 
     @Column(name = "motherboard", nullable = false)
     private String motherboard;
@@ -35,14 +36,14 @@ public class Pc {
     @Column(name = "storage", nullable = false)
     private String storage;
 
-    public Pc(Integer id, String motherboard, String cpu, String ram, String storage) {
-        this.id = id;
+    public Pc(int totalPower, String motherboard, String cpu, String ram, String storage) {
+        this.totalPower = totalPower;
         this.motherboard = motherboard;
         this.cpu = cpu;
         this.ram = ram;
         this.storage = storage;
     }
-
+    
     public Integer getId() {
         return id;
     }

@@ -2,11 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package service;
+package PcBuilder.service;
 
-import model.Pc;
+import PcBuilder.model.Pc;
 
 public interface PcService {
 
     Pc savePc(Pc pc);
+
+    Pc getPc(Pc pc);
 }
