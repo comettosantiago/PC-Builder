@@ -36,6 +36,18 @@ public class Pc implements Serializable {
     @Column(name = "storage", nullable = false)
     private String storage;
 
+    public Pc() {
+    }
+
+    public Pc(int id, int totalPower, String motherboard, String cpu, String ram, String storage) {
+        this.id = id;
+        this.totalPower = totalPower;
+        this.motherboard = motherboard;
+        this.cpu = cpu;
+        this.ram = ram;
+        this.storage = storage;
+    }
+
     public Pc(int totalPower, String motherboard, String cpu, String ram, String storage) {
         this.totalPower = totalPower;
         this.motherboard = motherboard;
@@ -43,7 +55,7 @@ public class Pc implements Serializable {
         this.ram = ram;
         this.storage = storage;
     }
-    
+
     public Integer getId() {
         return id;
     }

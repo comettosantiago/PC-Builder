@@ -6,9 +6,16 @@ package PcBuilder.service;
 
 import PcBuilder.model.Pc;
 
-public interface PcService {
+import java.util.List;
 
+public interface PcService {
     Pc savePc(Pc pc);
 
-    Pc getPc(Pc pc);
+    Pc getPcById(int id);
+
+    void deletePc(int id);
+
+    List<Pc> getAllPc();
+
+    Pc updatePc(Pc pc, int id);
 }

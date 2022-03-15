@@ -1,4 +1,4 @@
-/*  
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import PcBuilder.repository.PcRepository;
 import PcBuilder.service.PcService;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class PcServiceImpl implements PcService {
 
@@ -16,6 +19,7 @@ public class PcServiceImpl implements PcService {
 
     // @Autowire not really needed - we have just one constructor in this class
     public PcServiceImpl(PcRepository pcRepository) {
+        super();
         this.pcRepository = pcRepository;
     }
 
@@ -25,8 +29,32 @@ public class PcServiceImpl implements PcService {
     }
 
     @Override
-    public Pc getPc(Pc pc) {
-        return pcRepository.getById(pc.getId());
+    public Pc getPcById(int id) {
+        return pcRepository.findById(id).orElseThrow();
     }
 
+    @Override
+    public void deletePc(int id) {
+        pcRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Pc> getAllPc() {
+        return pcRepository.findAll();
+    }
+
+    @Override
+    public Pc updatePc(Pc pc, int id) {
+        Pc existingPc = pcRepository.findById(id).orElseThrow();
+
+        existingPc.setTotalPower(pc.getTotalPower());
+        existingPc.setMotherboard(pc.getMotherboard());
+        existingPc.setCpu(pc.getCpu());
+        existingPc.setRam(pc.getRam());
+        existingPc.setStorage(pc.getStorage());
+
+        pcRepository.save(existingPc);
+
+        return existingPc;
+    }
 }
